@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-EN" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creation</title>
+</head>
+<body>
+
+<div th:insert="~{navbar.html :: nav}"></div>
+
+<div lang="ru-RU">
+
+    <form th:method="POST" th:action="@{/post/find}" th:object="${answerRequest}">
+        <input type="text" th:field="*{exercise}" placeholder="exercise text" id="ex_text">
+
+        <label for="subjects-select">Choose subject</label>
+        <select name="subjects" id="subjects-select" th:field="*{type}">
+            <option th:each="subject : ${subjectTypes}" th:text="${subject}" th:value="${subject}"></option>
+        </select>
+
+        <button type="submit">Find</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+yes 1. Сделать ссылки на каждой странице на все другие старницы
+yes (did via .findAll since neither existsByExercise nor findByExercise.isPreset doesn't work) 2. Сделать проверку на укникальность
+yes 3. Сделать удаление

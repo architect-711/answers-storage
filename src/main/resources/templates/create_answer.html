@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:insert="~{navbar.html :: nav}"></div>
+
+<form th:method="POST" th:action="@{/post/save_one}" th:object="${answer}">
+    <label for="exercise">Put HTML or text</label>
+    <input type="text" th:field="*{exercise}" id="exercise" required>
+
+    <br>
+
+    <label for="select-type">Select subject type</label>
+    <select name="select" id="select-type" th:field="*{type}" required>
+        <option th:each="type : ${types}" th:value="${type}" th:text="${type}"/>
+    </select>
+
+    <br>
+
+    <label for="answer">Right answer</label>
+    <input type="text" th:field="*{rightAnswer}" id="answer" required>
+
+    <button type="submit">Send</button>
+</form>
+
+</body>
+</html>

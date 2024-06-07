@@ -1,0 +1,172 @@
+openapi: "3.1.0"
+info:
+  title: "answers_storage API"
+  description: "answers_storage API"
+  version: "1.0.0"
+servers:
+  - url: "https://answers_storage"
+paths:
+  /get/all/text_match:
+    get:
+      summary: "GET get/all/text_match"
+      operationId: "findByExerciseMatch"
+      parameters:
+        - name: "match"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+        - name: "type"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            enum:
+              - "PHYSICS"
+              - "BIOLOGY"
+              - "RUSSIAN"
+              - "LITERATURE"
+              - "SOCIOLOGY"
+              - "INFORMATICS"
+              - "HISTORY"
+              - "OBJ"
+              - "ENGLISH"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /get/search:
+    get:
+      summary: "GET get/search"
+      operationId: "searchAnswer"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /get/new:
+    get:
+      summary: "GET get/new"
+      operationId: "newAnswer"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /get/all:
+    get:
+      summary: "GET get/all"
+      operationId: "findAll"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /get/{id}:
+    get:
+      summary: "GET get/{id}"
+      operationId: "getById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /delete/{id}:
+    delete:
+      summary: "DELETE delete/{id}"
+      operationId: "delete"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "sw"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /post/save_one:
+    post:
+      summary: "POST post/save_one"
+      operationId: "create"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /post/find:
+    post:
+      summary: "POST post/find"
+      operationId: "find"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /rest/get/all:
+    get:
+      summary: "GET rest/get/all"
+      operationId: "getAllAnswers"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Answer"
+components:
+  schemas:
+    Answer:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        exercise:
+          type: "string"
+        type:
+          type: "string"
+          enum:
+            - "PHYSICS"
+            - "BIOLOGY"
+            - "RUSSIAN"
+            - "LITERATURE"
+            - "SOCIOLOGY"
+            - "INFORMATICS"
+            - "HISTORY"
+            - "OBJ"
+            - "ENGLISH"
+        rightAnswer:
+          type: "string"
