@@ -10,7 +10,7 @@
 
 <div style="border: 1px solid #000">
     <p th:text="${answer.getId()}"/>
-    <p th:text="| Type: ${answer.getType()} |"/>
+    <p th:text="| Type: ${answer.getSubject()} |"/>
     <h2 th:utext="${answer.getExercise()}"></h2>
     <b th:text="${answer.getRightAnswer()}"/>
 </div>

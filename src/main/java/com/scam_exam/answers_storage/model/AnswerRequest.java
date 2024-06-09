@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AnswerRequest {
     private String exercise;
-    private AnswerType type;
+    private AnswerType subject;
 }

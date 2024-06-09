@@ -18,7 +18,7 @@ public class Answer {
     private String exercise;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private AnswerType type;
+    private AnswerType subject;
     @Column(nullable = false)
     private String rightAnswer;
 }

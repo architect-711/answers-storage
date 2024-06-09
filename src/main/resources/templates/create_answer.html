@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Creation</title>
 </head>
 <body>
 
@@ -15,8 +15,8 @@
     <br>
 
     <label for="select-type">Select subject type</label>
-    <select name="select" id="select-type" th:field="*{type}" required>
-        <option th:each="type : ${types}" th:value="${type}" th:text="${type}"/>
+    <select name="select" id="select-type" th:field="*{subject}" required>
+        <option th:each="subject: ${subjects}" th:value="${subject}" th:text="${subject}"/>
     </select>
 
     <br>

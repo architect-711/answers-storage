@@ -14,8 +14,8 @@ import java.util.List;
 public class AnswersService {
     private final AnswersRepository repository;
 
-    public List<Answer> findByPatternAndType(String pattern, AnswerType type) {
-        return repository.findAll().stream().filter(answer -> answer.getType().equals(type)).filter(answer -> answer.getExercise().contains(pattern)).toList();
+    public List<Answer> returnFindByPatternAndTypePage(String exercise, AnswerType subject) {
+        return repository.findAll().stream().filter(answer -> answer.getSubject().equals(subject)).filter(answer -> answer.getExercise().contains(exercise)).toList();
     }
 
     @Transactional

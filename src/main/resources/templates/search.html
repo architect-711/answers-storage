@@ -2,7 +2,7 @@
 <html lang="en-EN" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Creation</title>
+    <title>Search</title>
 </head>
 <body>
 
@@ -10,11 +10,11 @@
 
 <div lang="ru-RU">
 
-    <form th:method="POST" th:action="@{/post/find}" th:object="${answerRequest}">
-        <input type="text" th:field="*{exercise}" placeholder="exercise text" id="ex_text">
+    <form th:method="GET" th:action="@{/get/all/text_match}" th:object="${answerRequest}">
+        <input type="text" th:field="*{exercise}" placeholder="exercise text" id="ex_text" required>
 
         <label for="subjects-select">Choose subject</label>
-        <select name="subjects" id="subjects-select" th:field="*{type}">
+        <select id="subjects-select" th:field="*{subject}" required>
             <option th:each="subject : ${subjectTypes}" th:text="${subject}" th:value="${subject}"></option>
         </select>
 

@@ -1,7 +1,6 @@
 package com.scam_exam.answers_storage.controller;
 
 import com.scam_exam.answers_storage.model.Answer;
-import com.scam_exam.answers_storage.model.AnswerRequest;
 import com.scam_exam.answers_storage.service.AnswersService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,8 +23,4 @@ public class PostAnswerController {
         return "redirect:/get/new";
     }
 
-    @PostMapping("/find")
-    public String find(@ModelAttribute("answerRequest") AnswerRequest answerRequest) {
-        return String.format("redirect:/get/all/text_match?match=%s&type=%s", answerRequest.getExercise(), answerRequest.getType().toString());
-    }
 }

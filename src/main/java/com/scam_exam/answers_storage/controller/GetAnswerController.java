@@ -1,14 +1,15 @@
 package com.scam_exam.answers_storage.controller;
 
 import com.scam_exam.answers_storage.model.Answer;
-import com.scam_exam.answers_storage.model.AnswerType;
 import com.scam_exam.answers_storage.model.AnswerRequest;
+import com.scam_exam.answers_storage.model.AnswerType;
 import com.scam_exam.answers_storage.service.AnswersService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriUtils;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/get")
@@ -18,10 +19,15 @@ public class GetAnswerController {
     private final AnswersService service;
 
     @GetMapping("/all/text_match")
-    public String findByExerciseMatch(@RequestParam("match") String pattern, @RequestParam("type") AnswerType type, Model model) {
-        String decodedURL = (UriUtils.decode(pattern, "UTF-8"));
+    public String findByExerciseMatch(@RequestParam("exercise") String exercise, @RequestParam("subject") AnswerType subject, Model model) {
+        List<Answer> foundAnswers = service.returnFindByPatternAndTypePage(exercise, subject);
 
-        model.addAttribute("answers", service.findByPatternAndType(decodedURL, type));
+        if (foundAnswers.isEmpty()) {
+            model.addAttribute("errorMessage", "No answer found for given pattern. Make sure the type and exercise you are looking for are correct.");
+
+            return "error";
+        }
+        model.addAttribute("answers", foundAnswers);
 
         return "text_matches";
     }
@@ -37,7 +43,7 @@ public class GetAnswerController {
     @GetMapping("/new")
     public String newAnswer(Model model) {
         model.addAttribute("answer", new Answer());
-        model.addAttribute("types", AnswerType.values());
+        model.addAttribute("subjects", AnswerType.values());
 
         return "create_answer";
     }
